@@ -1,0 +1,40 @@
+<div>
+    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmitForm()">
+        <div>Address:
+            <div formArrayName="address" *ngFor="let ad of address.controls; let i=index; ">
+                <div [formGroupName]="i">
+                    <div>
+                        <label> city </label>
+                        <input formControlName="city">
+                        <!-- {{getCity.errors | json}} -->
+                        <!-- <span *ngIf="getCity.invalid && getCity.touched ">
+                            <small *ngIf="getCity.errors?.required ">
+                                please enter city name
+                            </small>
+                            <small *ngIf="getCity.errors?.minlength ">
+                                please city name must be longer than 3 characters
+                            </small>
+                        </span> -->
+                    </div>
+                    <div>
+                        <label>state </label>
+                        <input formControlName="state">
+                    </div>
+                    <div>
+                        <label> postal code</label>
+                        <input formControlName="postalCode">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="button" (click)="addAddress()" value="Add another address" />
+            </div>
+        </div>
+
+        <button>save</button>
+
+    </form>
+
+
+    <div>{{userRegistrationForm.value | json}}</div>
+</div>

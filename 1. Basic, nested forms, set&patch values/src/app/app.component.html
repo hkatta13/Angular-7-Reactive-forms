@@ -1,0 +1,34 @@
+<div>
+    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmitForm()">
+        <div>
+            <label> username </label>
+            <input type="text" formControlName="userName">
+        </div>
+        <div>
+            <label>password </label>
+            <input type="password" formControlName="password">
+        </div>
+        <div>
+            <label> confirm password</label>
+            <input type="password" formControlName="confirmPassword">
+        </div>
+        <div formGroupName="address">
+            <div>
+                <label> city </label>
+                <input formControlName="city">
+            </div>
+            <div>
+                <label>state </label>
+                <input formControlName="state">
+            </div>
+            <div>
+                <label> postal code</label>
+                <input formControlName="postalCode">
+            </div>
+        </div>
+    </form>
+    <button (click)="loadData()">Load default Data</button>
+    <button (click)="loadParticalData()">Load Partial Data</button>
+
+    <div>{{userRegistrationForm.value | json}}</div>
+</div>

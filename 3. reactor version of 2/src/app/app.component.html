@@ -1,0 +1,75 @@
+<div>
+    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmitForm()">
+        <div>
+            <label> username </label>
+            <input type="text" formControlName="userName" [ngClass]="{'invalid-class': (getUserName.touched 
+                || getUserName.dirty) && getUserName.invalid}">
+
+            <span class=" invalid-feedback" *ngIf="getUserName.invalid && getUserName.touched">
+                <!-- {{userRegistrationForm.get('userName').errors | json}} -->
+                <!-- {{userRegistrationForm.get('userName').invalid}} -->
+
+                <small *ngIf="getUserName.errors?.required ">
+                    Please enter your first name.
+                </small>
+                <small *ngIf="getUserName.errors?.minlength ">
+                    The first name must be longer than 3 characters.
+                </small>
+            </span>
+        </div>
+        <div>
+            <label>password </label>
+            <input type="password " formControlName="password">
+
+            <span class=" invalid-feedback " *ngIf="getPassword.invalid && getPassword.touched">
+                <!-- {{userRegistrationForm.get('password').errors | json}} -->
+                <small *ngIf="getPassword.errors?.required ">
+                    Please enter your password.
+                </small>
+            <small *ngIf="getPassword.errors?.minlength ">
+                    The password must be longer than 3 characters.
+            </small>
+            </span>
+        </div>
+        <div>
+            <label> confirm password</label>
+            <input type="password " formControlName="confirmPassword">
+            <span class=" invalid-feedback " *ngIf="getConfirmPassword.invalid && getConfirmPassword.touched">
+                <!-- {{userRegistrationForm.get('confirmPassword').errors | json}} -->
+                <small *ngIf="getConfirmPassword.errors?.required ">
+                    Please enter your confirmPassword.
+                </small>
+            <small *ngIf="getConfirmPassword.errors?.minlength ">
+                    The confirmPassword must be longer than 3 characters.
+            </small>
+            </span>
+        </div>
+        <div formGroupName="address">
+            <div>
+                <label> city </label>
+                <input formControlName="city">
+                <!-- {{getCity.errors | json}} -->
+                <span *ngIf="getCity.invalid && getCity.touched">
+                    <small *ngIf="getCity.errors?.required">
+                        please enter city name
+                    </small>
+                    <small *ngIf="getCity.errors?.minlength">
+                        please city name must be longer than 3 characters
+                    </small>                    
+                </span>
+            </div>
+            <div>
+                <label>state </label>
+                <input formControlName="state">
+            </div>
+            <div>
+                <label> postal code</label>
+                <input formControlName="postalCode">
+            </div>
+        </div>
+    </form>
+    <button (click)="loadData() ">Load default Data</button>
+    <button (click)="loadParticalData() ">Load Partial Data</button>
+
+    <div>{{userRegistrationForm.value | json}}</div>
+</div>
